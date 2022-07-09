@@ -1,6 +1,6 @@
 {
-  "name": "crypto-cli",
-  "version": "1.0.0",
+  "name": "coffee-crypto-cli",
+  "version": "1.0.4",
   "description": "Cryptocurrency CLI price tool",
   "main": "dist/index.js",
   "author": "Gabe Olesen",
@@ -11,6 +11,9 @@
   },
   "bin": {
     "crypto": "./dist/index.js"
+  },
+   "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "prebuild": "rimraf dist",
