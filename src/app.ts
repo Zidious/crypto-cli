@@ -54,7 +54,6 @@ export const app = async (coffee: string, flags: Record<string, unknown>) => {
 
       if (!result.length) {
         logError(`Unknown coin: ${price.toString()}`);
-        process.exit(1);
       }
 
       for (const { name, current_price } of result) {
@@ -62,7 +61,6 @@ export const app = async (coffee: string, flags: Record<string, unknown>) => {
       }
     } catch (error) {
       logError(`An error occured: ${(error as Error).message}`);
-      process.exit(1);
     }
   }
 };
