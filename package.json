@@ -19,7 +19,7 @@
   "engines": {
     "node": "16"
   },
-  "devDependencies": {
+  "dependencies": {
     "@crypto-coffee/coingecko-api": "^1.1.0",
     "@types/node": "^18.0.3",
     "chalk": "4.1.2",
