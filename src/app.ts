@@ -41,11 +41,7 @@ interface CoinMarketResponse {
 }
 
 export const app = async (crypto: string, flags: Record<string, unknown>) => {
-  console.log('hello world');
-  if (crypto === 'crypto') {
-    console.log('hit after crypto');
     const gecko = new CoinGeckoAPI();
-
     const { price, priceChange, volume, high, low, ath, athChange } =
       flags as unknown as Flags;
 
@@ -59,7 +55,7 @@ export const app = async (crypto: string, flags: Record<string, unknown>) => {
         if (!result.length) {
           logError(`Unknown coin: ${price.toString()}`);
         }
-        console.log('res', result);
+
         for (const {
           name,
           current_price,
@@ -120,6 +116,5 @@ export const app = async (crypto: string, flags: Record<string, unknown>) => {
       } catch (error) {
         logError(`An error occured: ${(error as Error).message}`);
       }
-    }
   }
 };
