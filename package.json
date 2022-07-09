@@ -12,6 +12,9 @@
   "bin": {
     "crypto": "./dist/index.js"
   },
+   "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "yarn tsc"
