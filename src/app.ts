@@ -41,8 +41,7 @@ interface CoinMarketResponse {
 }
 
 export const app = async (crypto: string, flags: Record<string, unknown>) => {
-  const cryptoParsed = crypto.toLowerCase();
-  if (cryptoParsed === 'crypto') {
+  if (crypto === 'crypto') {
     const gecko = new CoinGeckoAPI();
 
     const { price, priceChange, volume, high, low, ath, athChange } =
