@@ -3,6 +3,12 @@ import { logError, logSuccess, format } from './utils';
 
 interface Flags {
   price: string[];
+  priceChange: boolean;
+  volume: boolean;
+  high: boolean;
+  low: boolean;
+  ath: boolean;
+  athChange: boolean;
 }
 
 interface CoinMarketResponse {
@@ -34,33 +40,85 @@ interface CoinMarketResponse {
   last_updated: string;
 }
 
-export const app = async (coffee: string, flags: Record<string, unknown>) => {
-  const coffeeParsed = coffee.toLowerCase();
+export const app = async (crypto: string, flags: Record<string, unknown>) => {
+  const cryptoParsed = crypto.toLowerCase();
+  if (cryptoParsed === 'crypto') {
+    const gecko = new CoinGeckoAPI();
 
-  if (coffeeParsed !== 'coffee') {
-    logError(`Unknown command: ${coffee}`);
-  }
+    const { price, priceChange, volume, high, low, ath, athChange } =
+      flags as unknown as Flags;
 
-  const gecko = new CoinGeckoAPI();
+    if (price.length) {
+      try {
+        const result: CoinMarketResponse[] = await gecko.coinMarkets({
+          vs_currency: 'usd',
+          ids: price.toString()
+        });
 
-  const { price } = flags as unknown as Flags;
+        if (!result.length) {
+          logError(`Unknown coin: ${price.toString()}`);
+        }
 
-  if (price.length) {
-    try {
-      const result: CoinMarketResponse[] = await gecko.coinMarkets({
-        vs_currency: 'usd',
-        ids: price.toString()
-      });
+        for (const {
+          name,
+          current_price,
+          total_volume,
+          high_24h,
+          low_24h,
+          price_change_percentage_24h: percent24h,
+          ath: athPrice,
+          ath_change_percentage: athPercent
+        } of result) {
+          const priceRes = `${name}: ${format(current_price)}`;
 
-      if (!result.length) {
-        logError(`Unknown coin: ${price.toString()}`);
+          let priceChangeRes;
+          let volumeRes;
+          let highRes;
+          let lowRes;
+          let athRes;
+          let athChangeRes;
+
+          if (priceChange) {
+            priceChangeRes = `change (24H): ${percent24h.toFixed(2)}%`;
+          }
+
+          if (high) {
+            highRes = `high (24H): ${format(high_24h)}`;
+          }
+
+          if (low) {
+            lowRes = `low (24H): ${format(low_24h)}`;
+          }
+
+          if (volume) {
+            volumeRes = `24H volume: ${format(total_volume)}`;
+          }
+
+          if (ath) {
+            athRes = `ATH: ${format(athPrice)}`;
+          }
+
+          if (athChange) {
+            athChangeRes = `ATH (%): ${athPercent.toFixed(2)}%`;
+          }
+
+          logSuccess(
+            [
+              priceRes,
+              priceChangeRes,
+              volumeRes,
+              highRes,
+              lowRes,
+              athRes,
+              athChangeRes
+            ]
+              .filter(Boolean)
+              .join(' - ')
+          );
+        }
+      } catch (error) {
+        logError(`An error occured: ${(error as Error).message}`);
       }
-
-      for (const { name, current_price } of result) {
-        logSuccess(`${name}: ${format(current_price)}`);
-      }
-    } catch (error) {
-      logError(`An error occured: ${(error as Error).message}`);
     }
   }
 };
