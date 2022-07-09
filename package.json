@@ -1,5 +1,5 @@
 {
-  "name": "@coffee/crypto-cli",
+  "name": "coffee/crypto-cli",
   "version": "1.0.0",
   "description": "Cryptocurrency CLI price tool",
   "main": "dist/index.js",
