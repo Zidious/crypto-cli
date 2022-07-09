@@ -1,6 +1,6 @@
 {
   "name": "coffee-crypto-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Cryptocurrency CLI price tool",
   "main": "dist/index.js",
   "author": "Gabe Olesen",
