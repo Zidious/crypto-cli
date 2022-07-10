@@ -40,81 +40,86 @@ interface CoinMarketResponse {
   last_updated: string;
 }
 
-export const app = async (crypto: string, flags: Record<string, unknown>) => {
-    const gecko = new CoinGeckoAPI();
-    const { price, priceChange, volume, high, low, ath, athChange } =
-      flags as unknown as Flags;
+export const app = async (action: string, flags: Record<string, unknown>) => {
+  const { price, priceChange, volume, high, low, ath, athChange } =
+    flags as unknown as Flags;
 
-    if (price.length) {
-      try {
-        const result: CoinMarketResponse[] = await gecko.coinMarkets({
-          vs_currency: 'usd',
-          ids: price.toString()
-        });
+  if (!price.length) {
+    logError('No coin name provided. Check `crypto --help` for help');
+  }
 
-        if (!result.length) {
-          logError(`Unknown coin: ${price.toString()}`);
-        }
+  const gecko = new CoinGeckoAPI();
+  try {
+    const result: CoinMarketResponse[] = await gecko.coinMarkets({
+      vs_currency: 'usd',
+      ids: price.toString()
+    });
 
-        for (const {
-          name,
-          current_price,
-          total_volume,
-          high_24h,
-          low_24h,
-          price_change_percentage_24h: percent24h,
-          ath: athPrice,
-          ath_change_percentage: athPercent
-        } of result) {
-          const priceRes = `${name}: ${format(current_price)}`;
+    if (!result.length) {
+      logError(`Unknown coin: ${price.toString()}`);
+    }
 
-          let priceChangeRes;
-          let volumeRes;
-          let highRes;
-          let lowRes;
-          let athRes;
-          let athChangeRes;
+    for (const {
+      name,
+      current_price,
+      total_volume,
+      high_24h,
+      low_24h,
+      price_change_percentage_24h: percent24h,
+      ath: athPrice,
+      ath_change_percentage: athPercent
+    } of result) {
+      const priceRes = `${name}: ${format(current_price)}`;
+      let priceChangeRes;
+      let volumeRes;
+      let highRes;
+      let lowRes;
+      let athRes;
+      let athChangeRes;
 
-          if (priceChange) {
-            priceChangeRes = `change (24H): ${percent24h.toFixed(2)}%`;
-          }
-
-          if (high) {
-            highRes = `high (24H): ${format(high_24h)}`;
-          }
-
-          if (low) {
-            lowRes = `low (24H): ${format(low_24h)}`;
-          }
-
-          if (volume) {
-            volumeRes = `24H volume: ${format(total_volume)}`;
-          }
-
-          if (ath) {
-            athRes = `ATH: ${format(athPrice)}`;
-          }
-
-          if (athChange) {
-            athChangeRes = `ATH (%): ${athPercent.toFixed(2)}%`;
-          }
-
-          logSuccess(
-            [
-              priceRes,
-              priceChangeRes,
-              volumeRes,
-              highRes,
-              lowRes,
-              athRes,
-              athChangeRes
-            ]
-              .filter(Boolean)
-              .join(' - ')
-          );
-        }
-      } catch (error) {
-        logError(`An error occured: ${(error as Error).message}`);
+      if (priceChange) {
+        priceChangeRes = `change (24H): ${percent24h.toFixed(2)}%`;
       }
+
+      if (high) {
+        highRes = `high (24H): ${format(high_24h)}`;
+      }
+
+      if (low) {
+        lowRes = `low (24H): ${format(low_24h)}`;
+      }
+
+      if (volume) {
+        volumeRes = `24H volume: ${format(total_volume)}`;
+      }
+
+      if (ath) {
+        athRes = `ATH: ${format(athPrice)}`;
+      }
+
+      if (athChange) {
+        athChangeRes = `ATH (%): ${athPercent.toFixed(2)}%`;
+      }
+
+      logSuccess(
+        [
+          priceRes,
+          priceChangeRes,
+          volumeRes,
+          highRes,
+          lowRes,
+          athRes,
+          athChangeRes
+        ]
+          .filter(Boolean)
+          .join(' - ')
+      );
+    }
+  } catch (error) {
+    logError(
+      `An error occured: ${
+        (error as Error).message
+      }\n Please report the issue here: https://github.com/Zidious/crypto-cli`
+    );
   }
 };
