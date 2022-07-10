@@ -90,7 +90,7 @@ export const app = async (action: string, flags: Record<string, unknown>) => {
       }
 
       if (volume) {
-        volumeRes = `24H volume: ${format(total_volume)}`;
+        volumeRes = `volume (24H): ${format(total_volume)}`;
       }
 
       if (ath) {
