@@ -9,7 +9,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 export const logError = (message: string) => {
-  console.log(ERROR(message));
+  console.error(ERROR(message));
   process.exit(1);
 };
 
