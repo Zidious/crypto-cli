@@ -17,7 +17,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "yarn tsc",
+    "build": "tsc",
     "pretest": "yarn build",
     "test": "mocha --timeout 60000 -r ts-node/register 'src/*.test.ts'"
   },
