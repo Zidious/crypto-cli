@@ -1,4 +1,6 @@
 # crypto-cli
+[![GitHub contributors](https://img.shields.io/github/contributors/zidious/crypto-cli)](https://github.com/zidious/crypto-cli/graphs/contributors)
+[![npm](https://img.shields.io/npm/dt/coffee-crypto-cli)](https://www.npmjs.com/package/coffee-crypto-cli)
 
 > Cryptocurrency CLI price tool
 
