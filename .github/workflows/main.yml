@@ -1,13 +1,12 @@
-name: CI
+name: CI_tests
 on:
-  - push
   - pull_request
 jobs:
   test:
-    name: Node.js ${{ matrix.node-version }}
+    name: Node v${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         node-version:
           - 14
@@ -17,5 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npm install yarn -g
       - run: yarn install
-      - run: sudo yarn test
+      - run: yarn build
+      - run: yarn test
