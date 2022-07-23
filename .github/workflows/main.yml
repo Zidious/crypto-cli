@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: sudo chown -R $(whoami) /usr/local/lib/node_modules/
       - run: yarn install
       - run: yarn build
+      - run: sudo chown -R /home/runner/work/crypto-cli/crypto-cli/dist/index.js
       - run: yarn test
