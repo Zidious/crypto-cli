@@ -1,0 +1,23 @@
+name: canary-release
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  publish:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build
+      - run: chmod +x dist/index.js
+      - run: yarn test
+      - run: yarn version --no-git-tag-version --prerelease --preid=canary-$(git rev-parse --short HEAD) --access=public
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: next
