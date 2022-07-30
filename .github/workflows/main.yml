@@ -16,4 +16,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
+      - run: yarn build
+      - run: chmod +x dist/index.js
       - run: yarn test
