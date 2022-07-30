@@ -26,7 +26,7 @@ describe('crypto-cli', () => {
   });
 
   describe('flags', () => {
-    describe.only('with `--price`', () => {
+    describe('with `--price`', () => {
       describe('with a valid coin name', () => {
         it('returns the price', async () => {
           const results = await execa(CLI, ['--price', 'bitcoin']);
