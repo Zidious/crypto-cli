@@ -30,8 +30,7 @@ describe('crypto-cli', () => {
       describe('with a valid coin name', () => {
         it('returns the price', async () => {
           const results = await execa(CLI, ['--price', 'bitcoin']);
-          console.log(results);
-
+       
           /* price will vary this output is always returned if successful */
           assert.include(results.stdout, 'Bitcoin: $');
           assert.equal(results.exitCode, 0);
