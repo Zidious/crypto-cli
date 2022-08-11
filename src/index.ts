@@ -17,10 +17,15 @@ const cli = meow(
   --ath - coin all time high price
   --athChange, --athc - percent price change from ATH
   --version - current version of the crypto-cli tool
+  --save - export all coin data to CSV and/or JSON
 
   Examples:
   $crypto --price bitcoin --pc
   >> bitoin: $1337 - change (24H): 13.37%
+
+  Save coin data:
+  $crypto --save json 
+  $crypto --save json,csv
 `,
   {
     flags: {
@@ -49,6 +54,9 @@ const cli = meow(
       athChange: {
         type: 'boolean',
         alias: 'athc'
+      },
+      save: {
+        type: 'string'
       }
     }
   }
