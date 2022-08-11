@@ -12,7 +12,9 @@ export const saveCoinData = (options: string, exportData: ExportData[]) => {
         fileExt.toLowerCase() === JSONEXT || fileExt.toLowerCase() === CSVEXT
     )
   ) {
-    logError('Unknown file type. Check `crypto --help` for help');
+    logError(
+      'Unable to export, unsupported file extension.\nPlease Check `crypto --help` for help'
+    );
   }
 
   logSuccess('Exporting coin data...');
@@ -35,7 +37,7 @@ const writeFile = (exportData: ExportData[], fileExt: string) => {
   for (const coin of exportData) {
     try {
       fs.writeFileSync(
-        `${coin.name}-${timestamp}.${fileExt}`,
+        `${(coin.name as string).toLowerCase()}-${timestamp}.${fileExt}`,
         JSON.stringify(coin),
         { encoding: 'utf8' }
       );
