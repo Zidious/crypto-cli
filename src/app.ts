@@ -133,7 +133,7 @@ export const app = async (action: string, flags: Record<string, unknown>) => {
     }
 
     if (save) {
-      saveCoinData(save, exportCoinData);
+      await saveCoinData(save, exportCoinData);
     }
 
     process.exit(0);
