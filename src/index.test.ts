@@ -30,7 +30,6 @@ describe('crypto-cli', () => {
       describe('with a valid coin name', () => {
         it('returns the price', async () => {
           const results = await execa(CLI, ['--price', 'bitcoin']);
-          console.log(results);
 
           /* price will vary this output is always returned if successful */
           assert.include(results.stdout, 'Bitcoin: $');
@@ -170,6 +169,40 @@ describe('crypto-cli', () => {
 
           assert.include(results.stdout, 'Bitcoin: $');
           assert.include(results.stdout, 'ATH (%):');
+          assert.equal(results.exitCode, 0);
+        });
+      });
+    });
+
+    describe('with `--save`', () => {
+      describe('give format csv', () => {
+        it('returns the price', async () => {
+          const results = await execa(CLI, [
+            '--price',
+            'bitcoin',
+            '--save',
+            'csv'
+          ]);
+
+          assert.include(results.stdout, 'Bitcoin: $');
+          assert.include(results.stdout, 'Exporting coin data...');
+          assert.include(results.stdout, 'Export complete.');
+          assert.equal(results.exitCode, 0);
+        });
+      });
+
+      describe('give format json', () => {
+        it('returns the price', async () => {
+          const results = await execa(CLI, [
+            '--price',
+            'bitcoin',
+            '--save',
+            'json'
+          ]);
+
+          assert.include(results.stdout, 'Bitcoin: $');
+          assert.include(results.stdout, 'Exporting coin data...');
+          assert.include(results.stdout, 'Export complete.');
           assert.equal(results.exitCode, 0);
         });
       });

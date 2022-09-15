@@ -5,6 +5,8 @@ jobs:
   test:
     name: Node.js ${{ matrix.node-version }}
     runs-on: self-hosted
+    env:
+      INPUT_TOKEN: ${{ secrets.NPM_TOKEN }}
     strategy:
       fail-fast: false
       matrix:
