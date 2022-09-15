@@ -73,6 +73,13 @@ Percent price change from the all time high.
 --athChange, --athc
 ```
 
+Save coin data via JSON and/or CSV
+
+```sh
+--save json
+--save json,csv
+```
+
 CLI help message.
 
 ```sh
