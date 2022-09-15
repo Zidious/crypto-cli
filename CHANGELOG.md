@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/zidious/crypto-cli/compare/v1.1.0...v1.2.0) (2022-09-15)
+
+
+### Features
+
+* add ability to export coin data via JSON and/or CSV with new `--save` flag ([#30](https://github.com/zidious/crypto-cli/issues/30)) ([7b2e5cd](https://github.com/zidious/crypto-cli/commit/7b2e5cd957588d9bca3a4da9042ce36472cfc3f2))
+
 ## 1.1.0 (2022-07-30)
 
 ### Bug Fixes
