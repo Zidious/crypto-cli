@@ -1,8 +1,8 @@
-import type { ExportData } from '../app';
 import { logError, logSuccess } from '../utils';
 import { CSVEXT, JSONEXT } from '../constants';
 import { parseAsync } from 'json2csv';
 import fs from 'fs';
+import type { ExportData } from '../constants';
 
 export const saveCoinData = async (
   options: string,
