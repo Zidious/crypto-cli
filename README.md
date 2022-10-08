@@ -18,6 +18,7 @@ You can install the crypto-cli tool via npm and yarn:
 npm install -g coffee-crypto-cli
 ```
 
+
 ```sh
 yarn add global coffee-crypto-cli
 ```
