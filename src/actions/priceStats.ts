@@ -12,7 +12,9 @@ interface PriceStatsParams {
   athPercent: number;
 }
 
-type PriceStatFlags = Omit<Flags, 'save'>;
+interface PriceStats extends Omit<Flags, 'save'> {
+  price: string[];
+}
 
 export const priceStats = (
   {
@@ -25,7 +27,7 @@ export const priceStats = (
     athPrice,
     athPercent
   }: PriceStatsParams,
-  { price, priceChange, high, low, volume, ath, athChange }: PriceStatFlags
+  { price, priceChange, high, low, volume, ath, athChange }: PriceStats
 ): void => {
   const priceRes = `${name}: ${format(current_price)}`;
   let priceChangeRes;

@@ -5,8 +5,8 @@ export const CSVEXT = 'csv';
 /** types */
 export type ExportData = Record<string, string | number>;
 
+export type Action = 'price';
 export interface Flags {
-  price: string[];
   priceChange: boolean;
   volume: boolean;
   high: boolean;

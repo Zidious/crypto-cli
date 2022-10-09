@@ -2,6 +2,7 @@
 
 import meow from 'meow';
 import { app } from './app';
+import type { Action, Flags } from './constants';
 
 const cli = meow(
   `
@@ -28,12 +29,8 @@ const cli = meow(
   $crypto --save json,csv
 `,
   {
+    allowUnknownFlags: false,
     flags: {
-      price: {
-        type: 'string',
-        isMultiple: true,
-        alias: 'p'
-      },
       priceChange: {
         type: 'boolean',
         alias: 'pc'
@@ -62,4 +59,16 @@ const cli = meow(
   }
 );
 
-app(cli.input[0], cli.flags);
+/**
+ * The CLI can consume the following:
+ * action - the subcommand to run (e.g. price)
+ * actionArg - the action to perform (e.g. bitcon)
+ * flags - the flags passed to the CLI (e.g. --price)
+ *
+ * example: crypto price bitcoin --price
+ */
+app({
+  action: cli.input[0] as Action,
+  actionArg: cli.input[1],
+  flags: cli.flags as Flags
+});
