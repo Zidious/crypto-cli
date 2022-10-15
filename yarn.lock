@@ -23,10 +23,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@crypto-coffee/coingecko-api@^1.1.1-canary-d32171f.0":
-  version "1.1.1-canary-d32171f.0"
-  resolved "https://registry.yarnpkg.com/@crypto-coffee/coingecko-api/-/coingecko-api-1.1.1-canary-d32171f.0.tgz#fac42ce1ae6e35edbff52738caf12a59700ed0d2"
-  integrity sha512-KicU6Cj/RzF4YJtgFZMABc9BRtwIkUS46m2YfyM7G5h0wEtuXXjpBHxyfNHKTSiCCJ4DPpD0C4uqV1LWalveYA==
+"@crypto-coffee/coingecko-api@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@crypto-coffee/coingecko-api/-/coingecko-api-1.2.0.tgz#effb8a63b0a9c58ca3a9b1eb3d4457853f117366"
+  integrity sha512-tEKh9HFJ20sk2pxMhkh+vto0pPJe0JrvxP95Vbm/zzJMBMVdHcrVHxaTr33BsXXUfb/nf40BCBbNTYGpiZstgg==
   dependencies:
     axios "^0.21.1"
     query-string "^7.0.1"
