@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import meow from 'meow';
-import { app } from './app';
+import { app } from './app.js';
 
 const cli = meow(
   `
@@ -28,6 +28,7 @@ const cli = meow(
   $crypto --save json,csv
 `,
   {
+    importMeta: import.meta,
     flags: {
       price: {
         type: 'string',

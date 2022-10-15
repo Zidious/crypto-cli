@@ -1,8 +1,8 @@
 import CoinGeckoAPI from '@crypto-coffee/coingecko-api';
-import { saveCoinData } from './actions/saveCoinData';
-import { logError } from './utils';
-import { priceStats } from './actions/priceStats';
-import type { ExportData, Flags } from './constants';
+import { saveCoinData } from './actions/saveCoinData.js';
+import { logError } from './utils.js';
+import { priceStats } from './actions/priceStats.js';
+import type { ExportData, Flags } from './constants.js';
 
 export const app = async (action: string, flags: Record<string, unknown>) => {
   const { price, priceChange, volume, high, low, ath, athChange, save } =
@@ -12,7 +12,7 @@ export const app = async (action: string, flags: Record<string, unknown>) => {
     logError('No coin name provided. Check `crypto --help` for help');
   }
 
-  const gecko = new CoinGeckoAPI();
+  const gecko = new CoinGeckoAPI.default();
   try {
     const result = await gecko.coinMarkets({
       vs_currency: 'usd',

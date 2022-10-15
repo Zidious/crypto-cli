@@ -1,9 +1,11 @@
 import 'mocha';
 import { assert } from 'chai';
-import execa, { ExecaError, ExecaReturnValue } from 'execa';
+import { execa, ExecaError, ExecaReturnValue } from 'execa';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const CLI = path.resolve(__dirname, '..', 'dist', 'index.js');
+const __filename = fileURLToPath(import.meta.url);
+const CLI = path.resolve(path.dirname(__filename), '..', 'dist', 'index.js');
 
 describe('crypto-cli', () => {
   describe('no flags provided', () => {
