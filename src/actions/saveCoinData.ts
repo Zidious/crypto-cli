@@ -1,8 +1,8 @@
-import { logError, logSuccess } from '../utils';
-import { CSVEXT, JSONEXT } from '../constants';
-import { parseAsync } from 'json2csv';
 import fs from 'fs';
-import type { ExportData } from '../constants';
+import { parseAsync } from 'json2csv';
+import { logError, logSuccess } from '../utils.js';
+import { CSVEXT, JSONEXT } from '../constants.js';
+import type { ExportData } from '../constants.js';
 
 export const saveCoinData = async (
   options: string,

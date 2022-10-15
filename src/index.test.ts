@@ -1,6 +1,6 @@
 import 'mocha';
 import { assert } from 'chai';
-import execa, { ExecaError, ExecaReturnValue } from 'execa';
+import { execa, ExecaError, ExecaReturnValue } from 'execa';
 import path from 'path';
 
 const CLI = path.resolve(__dirname, '..', 'dist', 'index.js');

@@ -1,5 +1,5 @@
-import { format, logSuccess } from '../utils';
-import type { Flags } from '../constants';
+import { format, logSuccess } from '../utils.js';
+import type { Flags } from '../constants.js';
 
 interface PriceStatsParams {
   name: string;
