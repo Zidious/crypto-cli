@@ -107,7 +107,7 @@ git clone https://github.com/Zidious/crypto-cli.git
 yarn install && yarn build
 ```
 
-To run the CLI locally, you can use the following followed by the command you want to run.
+To run the CLI locally, use the below command followed by the flag you want to run.
 
 ```sh
 node dist/index.js --price bitcoin
