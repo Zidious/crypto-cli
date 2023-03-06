@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   publish:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
       INPUT_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
