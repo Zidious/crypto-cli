@@ -15,7 +15,7 @@ jobs:
           packages: 'typescript,chalk,json2csv,meow'
       - uses: peter-evans/create-pull-request@v3     
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.PAT }}
           commit-message: 'chore: update dependencies'
           branch: robot-update-dependencies
           base: develop
