@@ -12,9 +12,8 @@ jobs:
           node-version: 16
       - uses: zidious/update-multiple-deps-action@main
         with:
-            packages: 'typescript,chalk,json2csv,meow'
+          packages: 'typescript,chalk,json2csv,meow'
       - uses: peter-evans/create-pull-request@v3     
-      - name: Create Pull Request with changes from update-multiple-deps-action
         with:
           token: ${{ secrets.NPM_TOKEN }}
           commit-message: 'chore: update dependencies'
