@@ -1,0 +1,24 @@
+name: Update Dependencies
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: zidious/update-multiple-deps-action@main
+        with:
+            packages: 'typescript,chalk,json2csv,meow'
+      - name: Create Pull Request with changes from update-multiple-deps-action
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          commit-message: 'chore: update dependencies'
+          branch: robot-update-dependencies
+          base: main
+          title: 'chore: update depdencies'
+          body: 'This PR updates dependencies'
