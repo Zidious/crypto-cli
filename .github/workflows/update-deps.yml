@@ -12,13 +12,13 @@ jobs:
           node-version: 16
       - uses: zidious/update-multiple-deps-action@v1
         with:
-          latest: >
-            '@crypto-coffee/coingecko-api,chalk,json2csv,
-            meow@types/chai,@types/json2csv,@types/mocha,
-            @types/node,@typescript-eslint/eslint-plugin,
-            @typescript-eslint/parser,chai,eslint,execa,
-            husky,lint-staged,mocha,,prettier,rimraf,ts-node,
-            typescript'
+          latest: > 
+            "@crypto-coffee/coingecko-api,chalk,json2csv
+            ,meow@types/chai,@types/json2csv,@types/mocha
+            ,@types/node,@typescript-eslint/eslint-plugin
+            ,@typescript-eslint/parser,chai,eslint,execa
+            ,husky,lint-staged,mocha,prettier,rimraf,ts-node
+            ,typescript"
       - uses: peter-evans/create-pull-request@v3     
         with:
           token: ${{ secrets.PAT }}
