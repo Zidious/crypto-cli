@@ -10,14 +10,20 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: zidious/update-multiple-deps-action@main
+      - uses: zidious/update-multiple-deps-action@v1
         with:
-          packages: 'typescript,chalk,json2csv,meow'
+          latest: |
+            @crypto-coffee/coingecko-api,chalk,json2csv,\
+            meow@types/chai,@types/json2csv,@types/mocha,\
+            @types/node,@typescript-eslint/eslint-plugin,\
+            @typescript-eslint/parser,chai,eslint,execa,\
+            husky,lint-staged,mocha,,prettier,rimraf,ts-node,\
+            typescript
       - uses: peter-evans/create-pull-request@v3     
         with:
           token: ${{ secrets.PAT }}
           commit-message: 'chore: update dependencies'
           branch: robot-update-dependencies
           base: develop
-          title: 'chore: update depdencies'
+          title: 'chore: update dependencies'
           body: 'This PR updates dependencies'
