@@ -73,7 +73,7 @@ Coin all time high price.
 Percent price change from the all time high.
 
 ```sh
---ath-chance, --athc
+--ath-change, --athc
 ```
 
 Save coin data via JSON and/or CSV
