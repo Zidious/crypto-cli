@@ -10,12 +10,12 @@ const cli = meow(
 
   Options:
   --price, --p - coin name
-  --priceChange, --pc - coin price change (%) in the past 24 hours
+  --price-change, --pc - coin price change (%) in the past 24 hours
   --volume, --v - coin volume in the past 24 hours
   --high - highest price sold in the past 24 hours
   --low - lowest price sold in the past 24 hours
   --ath - coin all time high price
-  --athChange, --athc - percent price change from ATH
+  --ath-change, --athc - percent price change from ATH
   --version - current version of the crypto-cli tool
 
   Examples:
