@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import meow from 'meow';
-import { app } from './app';
+import { app } from './app.js';
 
 const cli = meow(
   `
@@ -17,12 +17,18 @@ const cli = meow(
   --ath - coin all time high price
   --ath-change, --athc - percent price change from ATH
   --version - current version of the crypto-cli tool
+  --save - export all coin data to CSV and/or JSON
 
   Examples:
   $crypto --price bitcoin --pc
   >> bitoin: $1337 - change (24H): 13.37%
+
+  Save coin data:
+  $crypto --save json 
+  $crypto --save json,csv
 `,
   {
+    importMeta: import.meta,
     flags: {
       price: {
         type: 'string',
@@ -49,6 +55,9 @@ const cli = meow(
       athChange: {
         type: 'boolean',
         alias: 'athc'
+      },
+      save: {
+        type: 'string'
       }
     }
   }

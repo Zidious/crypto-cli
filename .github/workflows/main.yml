@@ -1,16 +1,20 @@
 name: CI
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - '**'
+      - '!develop'
+      - '!master'
 jobs:
   test:
     name: Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
+    env:
+      INPUT_TOKEN: ${{ secrets.NPM_TOKEN }}
     strategy:
       fail-fast: false
       matrix:
         node-version:
-          - 14
           - 16
     steps:
       - uses: actions/checkout@v3
@@ -18,4 +22,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
-      - run: sudo yarn test
+      - run: yarn build
+      - run: chmod +x dist/index.js
+      - run: yarn test

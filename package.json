@@ -1,6 +1,6 @@
 {
   "name": "coffee-crypto-cli",
-  "version": "1.0.5",
+  "version": "1.2.0",
   "description": "Cryptocurrency CLI price tool",
   "main": "dist/index.js",
   "author": "Gabe Olesen",
@@ -17,28 +17,54 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "yarn tsc",
-    "pretest": "yarn build",
-    "test": "mocha --timeout 60000 -r ts-node/register 'src/*.test.ts'"
+    "build": "tsc",
+    "test": "mocha 'src/*.test.ts'",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
   },
   "engines": {
     "node": ">=14"
   },
+  "type": "module",
   "dependencies": {
-    "@crypto-coffee/coingecko-api": "^1.1.0",
-    "chalk": "4.1.2",
-    "meow": "9"
+    "@crypto-coffee/coingecko-api": "^1.2.0",
+    "chalk": "^5.3.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "meow": "^11.0.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.1",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.0.3",
-    "chai": "^4.3.6",
-    "execa": "5.1.1",
-    "mocha": "^10.0.0",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.8.2",
-    "typescript": "^4.7.4"
-  }
+    "@types/chai": "^4.3.4",
+    "@types/json2csv": "^5.0.3",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "chai": "^4.3.7",
+    "eslint": "^8.44.0",
+    "execa": "^7.1.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.8",
+    "rimraf": "^4.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "lint-staged": {
+    "*.{md,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "keywords": [
+    "bitcoin",
+    "cryptocurrency",
+    "crypto",
+    "crypto cli",
+    "coingecko",
+    "cli",
+    "cli tool",
+    "price",
+    "price tool"
+  ]
 }
