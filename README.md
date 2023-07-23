@@ -43,7 +43,7 @@ Note: `--price, --p` is required for any of the subsequent flags.
 Coin price change (%) in the past 24 hours.
 
 ```sh
---priceChange, --pc
+--price-change, --pc
 ```
 
 Coin volume in the past 24 hours.
@@ -73,7 +73,7 @@ Coin all time high price.
 Percent price change from the all time high.
 
 ```sh
---athChange, --athc
+--ath-change, --athc
 ```
 
 Save coin data via JSON and/or CSV
