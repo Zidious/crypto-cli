@@ -96,13 +96,13 @@ describe('crypto-cli', () => {
       });
     });
 
-    describe('with `--priceChange, --pc`', () => {
+    describe('with `--price-change, --pc`', () => {
       describe('with a valid coin name', () => {
         it('returns the price change percentage', async () => {
           const results = await execa(CLI, [
             '--price',
             'bitcoin',
-            '--priceChange'
+            '--price-change'
           ]);
 
           assert.include(results.stdout, 'Bitcoin: $');
@@ -160,13 +160,13 @@ describe('crypto-cli', () => {
       });
     });
 
-    describe('with `--athChange`', () => {
+    describe('with `--ath-change`', () => {
       describe('with a valid coin name', () => {
         it('returns the percentage from the all time high price', async () => {
           const results = await execa(CLI, [
             '--price',
             'bitcoin',
-            '--athChange'
+            '--ath-change'
           ]);
 
           assert.include(results.stdout, 'Bitcoin: $');
