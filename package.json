@@ -52,13 +52,11 @@
     "typescript": "^5.2.2"
   },
   "lint-staged": {
-    "*.{ts}": [
+    "*.ts": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{md}": [
-      "prettier --write"
-    ]
+    "*.md": "prettier --write"
   },
   "keywords": [
     "bitcoin",
