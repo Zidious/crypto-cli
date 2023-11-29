@@ -19,6 +19,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "test": "mocha 'src/*.test.ts'",
+    "lint": "eslint --fix",
     "prepare": "husky install",
     "precommit": "lint-staged"
   },
@@ -37,8 +38,8 @@
     "@types/json2csv": "^5.0.3",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.6.0",
-    "@typescript-eslint/eslint-plugin": "^6.6.0",
-    "@typescript-eslint/parser": "^5.54.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
     "chai": "^4.3.8",
     "eslint": "^8.49.0",
     "execa": "^8.0.1",
@@ -51,8 +52,11 @@
     "typescript": "^5.2.2"
   },
   "lint-staged": {
-    "*.{md,ts}": [
+    "*.{ts}": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{md}": [
       "prettier --write"
     ]
   },

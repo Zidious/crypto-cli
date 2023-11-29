@@ -21,96 +21,43 @@ You can install the crypto-cli tool via npm and yarn:
 npm install -g coffee-crypto-cli
 ```
 
-```sh
-yarn add global coffee-crypto-cli
-```
-
 ## Usage
 
 ```sh
-$ crypto --price bitcoin --volume --ath
->> Bitcoin: $20,000 - volume: $13,337 - ATH: $68,000
+$ crypto bitcoin
+>> Bitcoin: $20,000
 ```
 
 ## Flags
 
-Note: `--price, --p` is required for any of the subsequent flags.
-
-```sh
---price, --p - coin name
-```
-
-Coin price change (%) in the past 24 hours.
-
-```sh
---price-change, --pc
-```
-
-Coin volume in the past 24 hours.
-
-```sh
---volume, --v
-```
-
-Highest price sold in the past 24 hours.
-
-```sh
---high
-```
-
-Lowest price sold in the past 24 hours.
-
-```sh
---low
-```
-
-Coin all time high price.
-
-```sh
---ath
-```
-
-Percent price change from the all time high.
-
-```sh
---ath-change, --athc
-```
-
-Save coin data via JSON and/or CSV
-
-```sh
---save json
---save json,csv
-```
-
-CLI help message.
-
-```sh
---help
-```
-
-Current version.
-
-```sh
---version
-```
+| Name                     | Description                                 |
+| ------------------------ | ------------------------------------------- |
+| `--price-change`, `--pc` | Coin price change (%) in the past 24 hours  |
+| `--volume`, `--v`        | Coin volume in the past 24 hours            |
+| `--ath-change`, `--athc` | Percent price change from the all time high |
+| `--high`, `--h`          | Highest price sold in the past 24 hours     |
+| `--low`, `--l`           | Lowest price sold in the past 24 hours      |
+| `--ath`                  | Coin all time high price                    |
+| `--save json,csv`        | Save coin data via JSON and/or CSV          |
+| `--help`                 | Flag description and usage examples         |
+| `--version`              | Current version                             |
 
 ## Local Development
 
-First things first, we'll need to clone the repo, install the dependencies, and, build the project.
+Clone the repo, install the dependencies, and, build the project.
 
 ```sh
 git clone https://github.com/Zidious/crypto-cli.git
 ```
 
 ```sh
-yarn install && yarn build
+yarn install --frozen-lockfile && yarn build
 ```
 
-To run the CLI locally, use the below command followed by the flag you want to run.
+To run the CLI locally:
 
 ```sh
-node dist/index.js --price bitcoin
+node dist/index.js bitcoin
 ```
 
 ## Contributing
