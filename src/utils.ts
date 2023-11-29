@@ -20,3 +20,10 @@ export const logSuccess = (message: string) => {
 export const format = (price: number) => {
   return formatter.format(price)
 }
+
+export const formatFileName = (coinName: string, fileExt: string): string => {
+  /* use unix timestamp, resolves conflict of same filenames */
+  const timestamp = new Date().valueOf()
+
+  return `${coinName.toLowerCase()}-${timestamp}.${fileExt}`
+}

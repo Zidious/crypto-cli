@@ -1,67 +1,52 @@
 import { format, logSuccess } from '../utils.js'
-import type { Flags } from '../constants.js'
+import type { PriceStatsParams } from '../types.js'
 
-interface PriceStatsParams {
-  name: string
-  current_price: number
-  total_volume: number
-  high_24h: number
-  low_24h: number
-  percent24h: number
-  athPrice: number
-  athPercent: number
-}
+export const priceStats = ({ results, flags }: PriceStatsParams): void => {
+  for (const result of results) {
+    const priceRes = `${result.name}: ${format(result.current_price)}`
+    let priceChangeRes
+    let volumeRes
+    let highRes
+    let lowRes
+    let athRes
+    let athChangeRes
 
-type PriceStatFlags = Omit<Flags, 'save'>
+    if (flags.priceChange) {
+      priceChangeRes = `change (24H): ${result.price_change_24h.toFixed(2)}%`
+    }
 
-export const priceStats = (
-  {
-    name,
-    current_price,
-    total_volume,
-    high_24h,
-    low_24h,
-    percent24h,
-    athPrice,
-    athPercent
-  }: PriceStatsParams,
-  { price, priceChange, high, low, volume, ath, athChange }: PriceStatFlags
-): void => {
-  const priceRes = `${name}: ${format(current_price)}`
-  let priceChangeRes
-  let volumeRes
-  let highRes
-  let lowRes
-  let athRes
-  let athChangeRes
+    if (flags.high) {
+      highRes = `high (24H): ${format(result.high_24h)}`
+    }
 
-  if (priceChange) {
-    priceChangeRes = `change (24H): ${percent24h.toFixed(2)}%`
+    if (flags.low) {
+      lowRes = `low (24H): ${format(result.low_24h)}`
+    }
+
+    if (flags.volume) {
+      volumeRes = `volume (24H): ${format(result.total_volume)}`
+    }
+
+    if (flags.ath) {
+      athRes = `ATH: ${format(result.ath)}`
+    }
+
+    if (flags.athChange) {
+      athChangeRes = `ATH (%): ${result.atl_change_percentage.toFixed(2)}%`
+    }
+
+    logSuccess(
+      [
+        priceRes,
+        priceChangeRes,
+        volumeRes,
+        highRes,
+        lowRes,
+        athRes,
+        athChangeRes
+      ]
+        .filter(Boolean)
+        .join(' - ')
+    )
   }
-
-  if (high) {
-    highRes = `high (24H): ${format(high_24h)}`
-  }
-
-  if (low) {
-    lowRes = `low (24H): ${format(low_24h)}`
-  }
-
-  if (volume) {
-    volumeRes = `volume (24H): ${format(total_volume)}`
-  }
-
-  if (ath) {
-    athRes = `ATH: ${format(athPrice)}`
-  }
-
-  if (athChange) {
-    athChangeRes = `ATH (%): ${athPercent.toFixed(2)}%`
-  }
-
-  logSuccess(
-    [priceRes, priceChangeRes, volumeRes, highRes, lowRes, athRes, athChangeRes]
-      .filter(Boolean)
-      .join(' - ')
-  )
 }

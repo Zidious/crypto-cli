@@ -7,7 +7,8 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const CLI = path.resolve(path.dirname(__filename), '..', 'dist', 'index.js')
 
-describe('crypto-cli', () => {
+// TODO: Skipping tests, we're getting rate limited: https://github.com/Zidious/crypto-cli/issues/17
+describe.skip('crypto-cli', () => {
   describe('no flags provided', () => {
     it('returns error', async () => {
       let err: ExecaError | null = null
