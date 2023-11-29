@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import meow from 'meow';
-import { app } from './app.js';
+import meow from 'meow'
+import { app } from './app.js'
 
 const cli = meow(
   `
@@ -61,6 +61,6 @@ const cli = meow(
       }
     }
   }
-);
+)
 
-app(cli.input[0], cli.flags);
+app(cli.input[0], cli.flags)

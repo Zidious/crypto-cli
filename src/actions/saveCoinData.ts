@@ -1,14 +1,14 @@
-import fs from 'fs';
-import { parseAsync } from 'json2csv';
-import { logError, logSuccess } from '../utils.js';
-import { CSVEXT, JSONEXT } from '../constants.js';
-import type { ExportData } from '../constants.js';
+import fs from 'fs'
+import { parseAsync } from 'json2csv'
+import { logError, logSuccess } from '../utils.js'
+import { CSVEXT, JSONEXT } from '../constants.js'
+import type { ExportData } from '../constants.js'
 
 export const saveCoinData = async (
   options: string,
   exportData: ExportData[]
 ) => {
-  const fileExts = options.toLowerCase().split(',');
+  const fileExts = options.toLowerCase().split(',')
 
   if (
     !fileExts.some(
@@ -18,45 +18,45 @@ export const saveCoinData = async (
   ) {
     logError(
       'Unable to export, unsupported file extension.\nPlease Check `crypto --help` for help'
-    );
+    )
   }
 
-  logSuccess('Exporting coin data...');
+  logSuccess('Exporting coin data...')
   if (fileExts.includes(JSONEXT)) {
-    writeFile(exportData, JSONEXT);
+    writeFile(exportData, JSONEXT)
   }
 
   if (fileExts.includes(CSVEXT)) {
-    await writeFile(exportData, CSVEXT);
+    await writeFile(exportData, CSVEXT)
   }
 
-  logSuccess('Export complete.');
-};
+  logSuccess('Export complete.')
+}
 
 const writeFile = async (exportData: ExportData[], fileExt: string) => {
   for (const coin of exportData) {
     const data =
-      fileExt === JSONEXT ? JSON.stringify(coin) : await formatCsvFile(coin);
+      fileExt === JSONEXT ? JSON.stringify(coin) : await formatCsvFile(coin)
     try {
       fs.writeFileSync(formatFileName(coin.name as string, fileExt), data, {
         encoding: 'utf8'
-      });
+      })
     } catch (error) {
       logError(
         `An error occured when attempting to save coin data: \n ${
           (error as Error).message
         }`
-      );
+      )
     }
   }
-};
+}
 
 const formatFileName = (coinName: string, fileExt: string): string => {
   /* use unix timestamp, resolves conflict of same filenames */
-  const timestamp = new Date().valueOf();
+  const timestamp = new Date().valueOf()
 
-  return `${coinName.toLowerCase()}-${timestamp}.${fileExt}`;
-};
+  return `${coinName.toLowerCase()}-${timestamp}.${fileExt}`
+}
 
 const formatCsvFile = async (coin: ExportData): Promise<string> => {
   return await parseAsync(coin as Readonly<ExportData>, {
@@ -96,5 +96,5 @@ const formatCsvFile = async (coin: ExportData): Promise<string> => {
         value: 'ath_change_percentage'
       }
     ]
-  });
-};
+  })
+}
