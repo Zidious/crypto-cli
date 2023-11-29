@@ -1,14 +1,19 @@
-import type { ExportData } from '../app';
-import { logError, logSuccess } from '../utils';
-import { CSVEXT, JSONEXT } from '../constants';
-import { parseAsync } from 'json2csv';
-import fs from 'fs';
+import fs from 'fs'
+import { parseAsync } from 'json2csv'
+import { formatFileName, logError, logSuccess } from '../utils.js'
+import { CSVEXT, JSONEXT } from '../constants.js'
+import { CoinMarkets } from '@crypto-coffee/coingecko-api/dist/types.js'
+import type { SaveCoinDataParams } from '../types.js'
 
-export const saveCoinData = async (
-  options: string,
-  exportData: ExportData[]
-) => {
-  const fileExts = options.toLowerCase().split(',');
+export const saveCoinData = async ({
+  options,
+  results
+}: SaveCoinDataParams) => {
+  if (!options) {
+    return
+  }
+
+  const fileExts = options.toLowerCase().split(',')
 
   if (
     !fileExts.some(
@@ -18,48 +23,51 @@ export const saveCoinData = async (
   ) {
     logError(
       'Unable to export, unsupported file extension.\nPlease Check `crypto --help` for help'
-    );
+    )
   }
 
-  logSuccess('Exporting coin data...');
+  const exportData: Partial<CoinMarkets>[] = []
+
+  for (const result of results) {
+    exportData.push(result)
+  }
+
+  logSuccess('Exporting coin data...')
   if (fileExts.includes(JSONEXT)) {
-    writeFile(exportData, JSONEXT);
+    writeFile(exportData, JSONEXT)
   }
 
   if (fileExts.includes(CSVEXT)) {
-    await writeFile(exportData, CSVEXT);
+    await writeFile(exportData, CSVEXT)
   }
 
-  logSuccess('Export complete.');
-};
+  logSuccess('Export complete.')
+}
 
-const writeFile = async (exportData: ExportData[], fileExt: string) => {
+const writeFile = async (
+  exportData: Partial<CoinMarkets>[],
+  fileExt: string
+) => {
   for (const coin of exportData) {
     const data =
-      fileExt === JSONEXT ? JSON.stringify(coin) : await formatCsvFile(coin);
+      fileExt === JSONEXT ? JSON.stringify(coin) : await formatCsvFile(coin)
+
     try {
       fs.writeFileSync(formatFileName(coin.name as string, fileExt), data, {
         encoding: 'utf8'
-      });
+      })
     } catch (error) {
       logError(
         `An error occured when attempting to save coin data: \n ${
           (error as Error).message
         }`
-      );
+      )
     }
   }
-};
+}
 
-const formatFileName = (coinName: string, fileExt: string): string => {
-  /* use unix timestamp, resolves conflict of same filenames */
-  const timestamp = new Date().valueOf();
-
-  return `${coinName.toLowerCase()}-${timestamp}.${fileExt}`;
-};
-
-const formatCsvFile = async (coin: ExportData): Promise<string> => {
-  return await parseAsync(coin as Readonly<ExportData>, {
+const formatCsvFile = async (coin: Partial<CoinMarkets>): Promise<string> => {
+  return await parseAsync(coin, {
     delimiter: ',',
     excelStrings: false,
     fields: [
@@ -89,12 +97,12 @@ const formatCsvFile = async (coin: ExportData): Promise<string> => {
       },
       {
         label: 'All Time High',
-        value: 'all_time_high'
+        value: 'ath'
       },
       {
         label: 'All Time High Percentage',
         value: 'ath_change_percentage'
       }
     ]
-  });
-};
+  })
+}

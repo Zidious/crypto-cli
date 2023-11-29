@@ -5,7 +5,7 @@ on:
       - develop
 jobs:
   publish:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
       INPUT_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
@@ -14,6 +14,8 @@ jobs:
         with:
           node-version: 16
       - run: yarn version --no-git-tag-version --prerelease --preid=canary-$(git rev-parse --short HEAD) --access=public
+      - run: yarn
+      - run: yarn build
       - uses: JS-DevTools/npm-publish@v1
         with:
           access: public

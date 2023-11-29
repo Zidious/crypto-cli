@@ -1,39 +1,42 @@
 #!/usr/bin/env node
 
-import meow from 'meow';
-import { app } from './app';
+import meow from 'meow'
+import CoinGeckoAPI from '@crypto-coffee/coingecko-api'
+import { logError } from './utils.js'
+import { saveCoinData } from './actions/saveCoinData.js'
+import type { Flags } from './types.js'
+import { priceStats } from './actions/priceStats.js'
 
 const cli = meow(
   `
   Usage:
-  $ crypto --price <coin name> <additional flags>
+  $ crypto <coin ticker(s)> <additional flags>
 
   Options:
-  --price, --p - coin name
-  --priceChange, --pc - coin price change (%) in the past 24 hours
-  --volume, --v - coin volume in the past 24 hours
-  --high - highest price sold in the past 24 hours
-  --low - lowest price sold in the past 24 hours
-  --ath - coin all time high price
-  --athChange, --athc - percent price change from ATH
-  --version - current version of the crypto-cli tool
-  --save - export all coin data to CSV and/or JSON
+  --price-change, --pc	Coin price change (%) in the past 24 hours
+  --volume, --v	Coin volume in the past 24 hours
+  --ath-change, -athc	Percent price change from the all time high
+  --high, --h	Highest price sold in the past 24 hours
+  --low, --l	Lowest price sold in the past 24 hours
+  --ath	Coin all time high price
+  --save json,csv	Save coin data via JSON and/or CSV
+  --version	Current version
 
   Examples:
-  $crypto --price bitcoin --pc
+  $crypto bitcoin --pc
   >> bitoin: $1337 - change (24H): 13.37%
 
+  $crypto bitcoin,ethereum 
+  >> bitcoin: $1337
+  >> ethereum: $1337
+
   Save coin data:
-  $crypto --save json 
-  $crypto --save json,csv
+  $crypto bitcoin --save json 
+  $crypto bitcoin --save json,csv
 `,
   {
+    importMeta: import.meta,
     flags: {
-      price: {
-        type: 'string',
-        isMultiple: true,
-        alias: 'p'
-      },
       priceChange: {
         type: 'boolean',
         alias: 'pc'
@@ -43,10 +46,12 @@ const cli = meow(
         alias: 'v'
       },
       high: {
-        type: 'boolean'
+        type: 'boolean',
+        alias: 'h'
       },
       low: {
-        type: 'boolean'
+        type: 'boolean',
+        alias: 'l'
       },
       ath: {
         type: 'boolean'
@@ -60,6 +65,44 @@ const cli = meow(
       }
     }
   }
-);
+)
 
-app(cli.input[0], cli.flags);
+const app = async () => {
+  const { save } = cli.flags as Flags
+  const coinTickers = cli.input[0]
+
+  if (!coinTickers) {
+    logError('No coin name provided. Check `crypto --help` for help')
+  }
+
+  const gecko = new CoinGeckoAPI.default()
+
+  const results = await gecko.coinMarkets({
+    vs_currency: 'usd',
+    ids: coinTickers
+  })
+
+  if (!results.length) {
+    logError(`Unknown coin: ${coinTickers}`)
+  }
+
+  priceStats({
+    results,
+    flags: cli.flags as Flags
+  })
+
+  await saveCoinData({
+    options: save,
+    results
+  })
+
+  process.exit(0)
+}
+
+app().catch(error => {
+  logError(
+    `An error occured: ${
+      (error as Error).message
+    }\n Please report the issue here: https://github.com/Zidious/crypto-cli`
+  )
+})
