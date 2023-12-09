@@ -69,7 +69,7 @@ const cli = meow(
 
 const app = async () => {
   const { save } = cli.flags as Flags
-  const coinTickers = cli.input[0]
+  const coinTickers = cli.input[0].toLowerCase().trim()
 
   if (!coinTickers) {
     logError('No coin name provided. Check `crypto --help` for help')
