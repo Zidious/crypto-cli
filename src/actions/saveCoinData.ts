@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { Parser } from '@json2csv/plainjs'
+import { AsyncParser } from '@json2csv/node'
 import { formatFileName, logError, logSuccess } from '../utils.js'
 import { CSVEXT, JSONEXT } from '../constants.js'
 import { CoinMarkets } from '@crypto-coffee/coingecko-api/dist/types.js'
@@ -66,8 +66,8 @@ const writeFile = async (
   }
 }
 
-const formatCsvFile = (coin: Partial<CoinMarkets>): string => {
-  const parser = new Parser({
+const formatCsvFile = async (coin: Partial<CoinMarkets>): Promise<string> => {
+  const parser = new AsyncParser({
     delimiter: ',',
     excelStrings: false,
     fields: [
@@ -105,5 +105,5 @@ const formatCsvFile = (coin: Partial<CoinMarkets>): string => {
       }
     ]
   })
-  return parser.parse(coin)
+  return await parser.parse(coin).promise()
 }
