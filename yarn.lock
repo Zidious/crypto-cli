@@ -112,6 +112,26 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@json2csv/formatters@^7.0.5":
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/@json2csv/formatters/-/formatters-7.0.5.tgz#530193d4a584f9f6b410fd0a95a7f8185d15d759"
+  integrity sha512-ihONIB8S1ZG0ji5nDFpfCUPphVLnEKlLxDmDqRMjmPhzw8WCvyLX2trIrNHCf1t2IV8rx+1tNYaDb1dh87jHgA==
+
+"@json2csv/node@^7.0.5":
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/@json2csv/node/-/node-7.0.5.tgz#0fc534af615513d31deaad1ec9701c5d600142f4"
+  integrity sha512-dOp2yHW8gDmIaGYUMEjhxZsMXld1hdvMLpgNdAOGJYqOrEMkGXbxZD3LF6hBJQnHsIZWsiWzLk4itFmvp/ZF7w==
+  dependencies:
+    "@json2csv/plainjs" "^7.0.5"
+
+"@json2csv/plainjs@^7.0.5":
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/@json2csv/plainjs/-/plainjs-7.0.5.tgz#03ae99af741153ccc4422424a9d67d859f2dc9cc"
+  integrity sha512-iJsYEzgRZUhRb8LltCeuBQyexQVUbovRZFF73Lo0iIvi5SUWsfXGTtbriIROsOKgfZPtYxmkZV+FYlsnBu9ybQ==
+  dependencies:
+    "@json2csv/formatters" "^7.0.5"
+    "@streamparser/json" "^0.0.19"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -133,10 +153,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@streamparser/json@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@streamparser/json/-/json-0.0.6.tgz#6d5853197f52d765d99a23767c951c03676a0e27"
-  integrity sha512-vL9EVn/v+OhZ+Wcs6O4iKE9EUpwHUqHmCtNUMWjqp+6dr85+XPOSGTEsqYNq1Vn04uk9SWlOVmx9J48ggJVT2Q==
+"@streamparser/json@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@streamparser/json/-/json-0.0.19.tgz#d9c264b54e366186ea4459bbb16c10238dc9e2a4"
+  integrity sha512-VTxtZGME6ZSWNCSjZ0Zd2LNNodx62XvmARb/liHIwGlInuuvoDzioLuRP8ajV8iLBknsTrsqpRDGlvzKSzpNEw==
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
@@ -168,13 +188,6 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.12.tgz#d70faba7039d5fca54c83c7dbab41051d2b6f6cb"
   integrity sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==
 
-"@types/json2csv@^5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@types/json2csv/-/json2csv-5.0.3.tgz#759514772a90e35b08c10808dedeaf52248af418"
-  integrity sha512-ZJEv6SzhPhgpBpxZU4n/TZekbZqI4EcyXXRwms1lAITG2kIAtj85PfNYafUOY1zy8bWs5ujaub0GU4copaA0sw==
-  dependencies:
-    "@types/node" "*"
-
 "@types/minimist@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
@@ -184,11 +197,6 @@
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-10.0.1.tgz#2f4f65bb08bc368ac39c96da7b2f09140b26851b"
   integrity sha512-/fvYntiO1GeICvqbQ3doGDIP97vWmvFt83GKguJ6prmQM2iXZfFcq6YE8KteFyRtX2/h5Hf91BYvPodJKFYv5Q==
-
-"@types/node@*":
-  version "18.7.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.3.tgz#432c89796eab539b7a30b7b8801a727b585238a4"
-  integrity sha512-LJgzOEwWuMTBxHzgBR/fhhBOWrvBjvO+zPteUgbbuQi80rYIZHrk1mNbRUqPZqSLP2H7Rwt1EFLL/tNLD1Xx/w==
 
 "@types/node@^20.6.0":
   version "20.6.0"
@@ -575,11 +583,6 @@ commander@11.0.0:
   version "11.0.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-11.0.0.tgz#43e19c25dbedc8256203538e8d7e9346877a6f67"
   integrity sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==
-
-commander@^6.2.0:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.1.tgz#0792eb682dfbc325999bb2b84fddddba110ac73c"
-  integrity sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -1256,15 +1259,6 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
 
-json2csv@^6.0.0-alpha.2:
-  version "6.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/json2csv/-/json2csv-6.0.0-alpha.2.tgz#ef859e8883a5db1077d784e302a79003c13c212f"
-  integrity sha512-nJ3oP6QxN8z69IT1HmrJdfVxhU1kLTBVgMfRnNZc37YEY+jZ4nU27rBGxT4vaqM/KUCavLRhntmTuBFqZLBUcA==
-  dependencies:
-    "@streamparser/json" "^0.0.6"
-    commander "^6.2.0"
-    lodash.get "^4.4.2"
-
 kind-of@^6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
@@ -1329,11 +1323,6 @@ locate-path@^7.1.0:
   integrity sha512-vJXaRMJgRVD3+cUZs3Mncj2mxpt5mP0EmNOsxRSZRMlbqjvxzDEOIUWXGmavo0ZC9+tNZCBLQ66reA11nbpHZg==
   dependencies:
     p-locate "^6.0.0"
-
-lodash.get@^4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
-  integrity sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
 
 lodash.merge@^4.6.2:
   version "4.6.2"
