@@ -103,6 +103,6 @@ app().catch(error => {
   logError(
     `An error occured: ${
       (error as Error).message
-    }\n Please report the issue here: https://github.com/Zidious/crypto-cli`
+    }\n Please report the issue here: https://github.com/Zidious/crypto-cli/issues`
   )
 })
