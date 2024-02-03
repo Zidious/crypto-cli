@@ -67,3 +67,5 @@ We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) fo
 ## Shoutouts
 
 Cryptocurrency coin statistics are gathered from the [CoinGecko API](https://www.coingecko.com/en/api/documentation).
+
+TEST
