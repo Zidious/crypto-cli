@@ -1,6 +1,7 @@
 import { format, logSuccess } from '../utils.js'
 import type { PriceStatsParams } from '../types.js'
 
+// test
 export const priceStats = ({ results, flags }: PriceStatsParams): void => {
   for (const result of results) {
     const priceRes = `${result.name}: ${format(result.current_price)}`
