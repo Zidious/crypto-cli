@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/zidious/crypto-cli/compare/v2.0.0...v2.0.1) (2025-03-28)
+
+### Bug Fixes
+
+- adjust price formatting to account for meme coins ([#71](https://github.com/zidious/crypto-cli/issues/71)) ([f96a58e](https://github.com/zidious/crypto-cli/commit/f96a58e7c95ea4920d62318fc0220350046d28b6))
+- remove casing requirement ([#66](https://github.com/zidious/crypto-cli/issues/66)) ([ea4ddfc](https://github.com/zidious/crypto-cli/commit/ea4ddfcd8d543d19d4c5a66e41830134dd7a7695))
+
 ## [2.0.0](https://github.com/zidious/crypto-cli/compare/v1.2.0...v2.0.0) (2023-11-29)
 
 ### ⚠ BREAKING CHANGES
