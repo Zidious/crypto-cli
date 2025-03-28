@@ -14,9 +14,9 @@ export const logSuccess = (message: string) => {
 
 export const format = (price: number) => {
   const decimalPart = price.toString().split('.')[1]
-  // If the decimal part starts with 0000, it's likely a meme coin
+  // If the decimal part starts with 000, it's likely a meme coin
   // and we want to show more decimal places to avoid showing 0.00
-  const isMemeCoin = decimalPart && decimalPart.slice(0, 4) === '0000'
+  const isMemeCoin = decimalPart && decimalPart.slice(0, 3) === '000'
 
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
