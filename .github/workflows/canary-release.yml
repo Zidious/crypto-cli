@@ -9,10 +9,10 @@ jobs:
     env:
       INPUT_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 22
       - run: yarn version --no-git-tag-version --prerelease --preid=canary-$(git rev-parse --short HEAD) --access=public
       - run: yarn
       - run: yarn build

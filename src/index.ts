@@ -39,26 +39,26 @@ const cli = meow(
     flags: {
       priceChange: {
         type: 'boolean',
-        alias: 'pc'
+        shortFlag: 'pc'
       },
       volume: {
         type: 'boolean',
-        alias: 'v'
+        shortFlag: 'v'
       },
       high: {
         type: 'boolean',
-        alias: 'h'
+        shortFlag: 'h'
       },
       low: {
         type: 'boolean',
-        alias: 'l'
+        shortFlag: 'l'
       },
       ath: {
         type: 'boolean'
       },
       athChange: {
         type: 'boolean',
-        alias: 'athc'
+        shortFlag: 'athc'
       },
       save: {
         type: 'string'
@@ -69,7 +69,7 @@ const cli = meow(
 
 const app = async () => {
   const { save } = cli.flags as Flags
-  const coinTickers = cli.input[0]
+  const coinTickers = cli.input[0].toLowerCase().trim()
 
   if (!coinTickers) {
     logError('No coin name provided. Check `crypto --help` for help')
@@ -103,6 +103,6 @@ app().catch(error => {
   logError(
     `An error occured: ${
       (error as Error).message
-    }\n Please report the issue here: https://github.com/Zidious/crypto-cli`
+    }\n Please report the issue here: https://github.com/Zidious/crypto-cli/issues`
   )
 })

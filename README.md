@@ -30,17 +30,17 @@ $ crypto bitcoin
 
 ## Flags
 
-| Name                     | Description                                 |
-| ------------------------ | ------------------------------------------- |
-| `--price-change`, `--pc` | Coin price change (%) in the past 24 hours  |
-| `--volume`, `--v`        | Coin volume in the past 24 hours            |
-| `--ath-change`, `--athc` | Percent price change from the all time high |
-| `--high`, `--h`          | Highest price sold in the past 24 hours     |
-| `--low`, `--l`           | Lowest price sold in the past 24 hours      |
-| `--ath`                  | Coin all time high price                    |
-| `--save json,csv`        | Save coin data via JSON and/or CSV          |
-| `--help`                 | Flag description and usage examples         |
-| `--version`              | Current version                             |
+| Name                    | Description                                 |
+| ----------------------- | ------------------------------------------- |
+| `--price-change`, `-pc` | Coin price change (%) in the past 24 hours  |
+| `--volume`, `-v`        | Coin volume in the past 24 hours            |
+| `--ath-change`, `-athc` | Percent price change from the all time high |
+| `--high`, `-h`          | Highest price sold in the past 24 hours     |
+| `--low`, `-l`           | Lowest price sold in the past 24 hours      |
+| `--ath`                 | Coin all time high price                    |
+| `--save json,csv`       | Save coin data via JSON and/or CSV          |
+| `--help`                | Flag description and usage examples         |
+| `--version`             | Current version                             |
 
 ## Local Development
 
