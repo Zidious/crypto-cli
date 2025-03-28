@@ -69,7 +69,6 @@ const writeFile = async (
 const formatCsvFile = async (coin: Partial<CoinMarkets>): Promise<string> => {
   const parser = new AsyncParser({
     delimiter: ',',
-    excelStrings: false,
     fields: [
       {
         label: 'Name',

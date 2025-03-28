@@ -39,26 +39,26 @@ const cli = meow(
     flags: {
       priceChange: {
         type: 'boolean',
-        alias: 'pc'
+        shortFlag: 'pc'
       },
       volume: {
         type: 'boolean',
-        alias: 'v'
+        shortFlag: 'v'
       },
       high: {
         type: 'boolean',
-        alias: 'h'
+        shortFlag: 'h'
       },
       low: {
         type: 'boolean',
-        alias: 'l'
+        shortFlag: 'l'
       },
       ath: {
         type: 'boolean'
       },
       athChange: {
         type: 'boolean',
-        alias: 'athc'
+        shortFlag: 'athc'
       },
       save: {
         type: 'string'
